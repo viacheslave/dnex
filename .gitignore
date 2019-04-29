@@ -54,3 +54,5 @@ dkms.conf
 src/obj/*
 src/bin/*
 src/export/*
+
+*.suo
