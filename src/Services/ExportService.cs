@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
 
 namespace SpringOff.DNEx
 {
@@ -9,14 +8,13 @@ namespace SpringOff.DNEx
   {
     private readonly IApiService _apiService;
     private readonly IDumpService _dumpService;
-    private readonly Microsoft.Extensions.Logging.ILogger _logger;
 
-    public ExportService(IApiService apiService, IDumpService dumpService, ILoggerFactory loggerFactory)
+    public ExportService(IApiService apiService, IDumpService dumpService)
     {
       _dumpService = dumpService;
       _apiService = apiService;
-      _logger = loggerFactory.CreateLogger<ExportService>();
     }
+
     public async Task Dump(LoginRequest loginRequest)
     {
       if (loginRequest == null)
@@ -24,13 +22,13 @@ namespace SpringOff.DNEx
 
       var loginResponse = await _apiService.Login(loginRequest);
       if (loginResponse == null)
-        return;
+				throw new ApplicationException("Login request returned no response");
       
       var syncExportResult = await _dumpService.DumpStats(loginResponse);
       if (syncExportResult == null)
-        return;
+				throw new ApplicationException("Stats request returned no response");
 
-      Console.WriteLine($"Sync Data exported to: {syncExportResult.FileLocation}");
+			Console.WriteLine($"Sync Data exported to: {syncExportResult.FileLocation}");
 
       var cars = syncExportResult.Response?.Data?.User?.Cars;
       if (cars?.Any() == true)

@@ -56,3 +56,4 @@ src/bin/*
 src/export/*
 
 *.suo
+/src/Properties/launchSettings.json
