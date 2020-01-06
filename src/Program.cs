@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
 
@@ -6,7 +7,7 @@ namespace SpringOff.DNEx
 {
 	class Program
 	{
-		static void Main(string[] args)
+		async static Task Main(string[] args)
 		{
 			if (args.Length < 2)
 			{
@@ -27,10 +28,8 @@ namespace SpringOff.DNEx
 			var apiService = new ApiService(loggerFactory);
 			var dumpService = new DumpService(apiService, loggerFactory);
 
-			new ExportService(apiService, dumpService)
-				.Dump(new LoginRequest(login, password))
-				.GetAwaiter()
-				.GetResult();
+			await new ExportService(apiService, dumpService)
+				.Dump(new LoginRequest(login, password));
 
 			Console.WriteLine("All Done.");
 			Console.WriteLine(Environment.NewLine);
