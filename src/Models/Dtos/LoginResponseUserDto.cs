@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace SpringOff.DNEx
 {
+	/// <summary>
+	///		User response DTO
+	/// </summary>
 	internal sealed class LoginResponseUserDto
 	{
 		[JsonProperty("user_id")]

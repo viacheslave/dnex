@@ -2,6 +2,9 @@ using Newtonsoft.Json;
 
 namespace SpringOff.DNEx
 {
+	/// <summary>
+	///		Car stats DTO
+	/// </summary>
 	internal sealed class CarStatsRequestDto
 	{
 		[JsonProperty("car_id")]
