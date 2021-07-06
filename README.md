@@ -1,13 +1,13 @@
-## DriverNotes.Export Tool
+# DriverNotes.Export Tool
 
-### Description
+## Description
 The simplest console application that allows you to export your raw DriverNotes (drivernotes.net) data through the HTTP REST API.
 
-### Prerequisites
+## Prerequisites
 + Microsoft Visual Studio 2019 / Visual Studio Code
 + Microsoft .NET Core 3 Runtime
 
-### Usage
+## Usage
 ~~~~
 DriverNotes.Export.exe [email] [password]
 ~~~~
